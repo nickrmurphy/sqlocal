@@ -12,8 +12,6 @@ import { SQLocal } from 'sqlocal';
 const { sql } = new SQLocal('database.sqlite3');
 ```
 
-<!-- @include: ../.partials/initialization-note.md -->
-
 `sql` is used as a [tagged template](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates). Values interpolated into the query string will be passed to the database as parameters to that query.
 
 ```javascript
@@ -44,7 +42,7 @@ Multiple statements can be passed in the query, but note that the results return
 ```javascript
 // Warning: only returns the row with id 1.
 const result = await sql`
-	SELECT * FROM foo WHERE id = 1; 
+	SELECT * FROM foo WHERE id = 1;
 	SELECT * FROM foo WHERE id = 2;
 `;
 

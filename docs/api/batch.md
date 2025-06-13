@@ -12,8 +12,6 @@ import { SQLocal } from 'sqlocal';
 const { batch } = new SQLocal('database.sqlite3');
 ```
 
-<!-- @include: ../.partials/initialization-note.md -->
-
 The `batch` function takes a group of SQL queries, passes them to the database all together, and executes them inside a transaction. If any of the queries fail, `batch` will throw an error, and the transaction will be rolled back automatically. If all queries succeed, the transaction will be committed and the results from each query will be returned.
 
 Provide a function to `batch` that returns an array of SQL queries constructed using the `sql` tagged template function passed to it. This `sql` tag function works similarly to the [`sql` tag function used for single queries](sql.md), but the queries passed to `batch` should not be individually `await`ed. Await the call to `batch`, and each query will be executed against the database in order.

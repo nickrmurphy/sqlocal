@@ -53,8 +53,6 @@ If your application needs to query multiple databases, you can initialize anothe
 
 With the client initialized, you are ready to [start making queries](/api/sql).
 
-<!-- @include: ../.partials/initialization-note.md -->
-
 ## Options
 
 The `SQLocal` constructor can also be passed an object to accept additional options.

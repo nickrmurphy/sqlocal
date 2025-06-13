@@ -12,8 +12,6 @@ import { SQLocal } from 'sqlocal';
 const { transaction } = new SQLocal('database.sqlite3');
 ```
 
-<!-- @include: ../.partials/initialization-note.md -->
-
 The `transaction` method provides a way to execute a transaction on the database, ensuring atomicity and isolation of the SQL queries executed within it. `transaction` takes a callback that is passed a `tx` object containing a `sql` tagged template for executing SQL within the transaction.
 
 This `sql` tag function passed in the `tx` object works similarly to the [`sql` tag function used for single queries](sql.md), but it ensures that the queries are executed in the context of the open transaction. Any logic can be carried out in the callback between the queries as needed.
@@ -36,4 +34,3 @@ const newProductId = await transaction(async (tx) => {
 	return product.id;
 });
 ```
-

@@ -12,8 +12,6 @@ import { SQLocal } from 'sqlocal';
 const { createScalarFunction } = new SQLocal('database.sqlite3');
 ```
 
-<!-- @include: ../.partials/initialization-note.md -->
-
 This method takes a string to name a custom SQL function as its first argument and a callback function as its second argument which the SQL function will call. After running `createScalarFunction`, the function that you defined can be called from subsequent SQL queries. Arguments passed to the function in the SQL query will be passed to the JavaScript callback, and the return value of the callback will be passed back to SQLite to use to complete the query.
 
 This can be used to perform custom transformations on column values in a query. For example, you could define a function that converts temperatures from Celsius to Fahrenheit.
