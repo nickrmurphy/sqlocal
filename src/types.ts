@@ -1,7 +1,5 @@
 import type { Database, Sqlite3Static } from '@sqlite.org/sqlite-wasm';
 import type { CompiledQuery as KyselyQuery } from 'kysely';
-import type { RunnableQuery as DrizzleQuery } from 'drizzle-orm/runnable-query';
-import type { SqliteRemoteResult } from 'drizzle-orm/sqlite-proxy';
 import type { sqlTag } from './lib/sql-tag.js';
 import type { SQLocalProcessor } from './processor.js';
 
@@ -27,11 +25,7 @@ export type Statement = {
 
 export type ReturningStatement<Result = unknown> =
 	| Statement
-	| KyselyQuery<Result>
-	| DrizzleQuery<
-			Result extends SqliteRemoteResult<unknown> ? any : Result[],
-			'sqlite'
-	  >;
+	| KyselyQuery<Result>;
 
 export type StatementInput<Result = unknown> =
 	| ReturningStatement<Result>

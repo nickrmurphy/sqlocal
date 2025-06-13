@@ -37,27 +37,6 @@ const newProductId = await transaction(async (tx) => {
 });
 ```
 
-## Drizzle
-
-Drizzle queries can also be used with `transaction` by passing them to the `tx` object's `query` function. `query` will execute the Drizzle query as part of the transaction and its return value will be typed according to Drizzle.
-
-This is the recommended way to execute transactions when using Drizzle with SQLocal. The [`transaction` method provided by Drizzle](https://orm.drizzle.team/docs/transactions) does not ensure isolation, so queries executed outside of the Drizzle transaction at the same time may create a data inconsistency.
-
-```javascript
-const productName = 'rice';
-const productPrice = 2.99;
-
-const newProductId = await transaction(async (tx) => {
-	const [product] = await tx.query(
-		db.insert(groceries).values({ name: productName }).returning()
-	);
-	await tx.query(
-		db.insert(prices).values({ groceryId: product.id, price: productPrice })
-	);
-	return product.id;
-});
-```
-
 ## Kysely
 
 Kysely queries can be used with `transaction` by calling Kysely's `compile` method on the queries and passing them to the `tx` object's `query` function. `query` will execute the Kysely query as part of the transaction and its return value will be typed according to Kysely.

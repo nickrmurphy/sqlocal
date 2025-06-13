@@ -11,7 +11,7 @@ SQLocal makes it easy to run SQLite3 in the browser, backed by the origin privat
 - 📂 Persists data to the origin private file system, which is optimized for fast file I/O
 - 🔒 Each user can have their own private database instance
 - 🚀 Simple API; just name your database and start running SQL queries
-- 🛠️ Works with Kysely and Drizzle ORM for making type-safe queries
+- 🛠️ Works with Kysely ORM for making type-safe queries
 
 ## Examples
 

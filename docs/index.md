@@ -39,5 +39,5 @@ features:
     details: Just name your database and start running SQL queries
   - title: TypeScript
     icon: 🛠️
-    details: Works with Kysely and Drizzle ORM for making type-safe queries
+    details: Works with Kysely ORM for making type-safe queries
 ---
