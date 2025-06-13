@@ -23,15 +23,14 @@ SQLocal is a browser-based SQLite library that runs SQLite WebAssembly in a web 
 - **SQLocal** (`src/client.ts`): Main client class that provides the public API
 - **SQLocalProcessor** (`src/processor.ts`): Handles SQLite operations and message processing
 - **Worker** (`src/worker.ts`): Web worker entry point using OPFS driver
-- **Drivers** (`src/drivers/`): Different storage backends (OPFS, memory, localStorage/sessionStorage)
+- **Drivers** (`src/drivers/`): Different storage backends (OPFS, memory)
 
 ### Architecture Flow
 
 1. **Client** creates SQLocal instance with database path
 2. **Driver Selection**: Automatically chooses driver based on database path:
    - OPFS driver for file paths (uses web worker)
-   - Memory driver for `:memory:` 
-   - KVVFS driver for `local`/`session` storage
+   - Memory driver for `:memory:`
 3. **Message Passing**: Client communicates with processor via message passing
 4. **Query Processing**: Processor executes SQL via SQLite WASM and returns results
 

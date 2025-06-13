@@ -11,9 +11,7 @@ export type Sqlite3Method = 'get' | 'all' | 'run' | 'values';
 export type Sqlite3StorageType =
 	| (string & {})
 	| 'memory'
-	| 'opfs'
-	| 'local'
-	| 'session';
+	| 'opfs';
 
 // Queries
 
@@ -79,11 +77,7 @@ export type DriverStatement = {
 
 export type DatabasePath =
 	| (string & {})
-	| ':memory:'
-	| 'local'
-	| ':localStorage:'
-	| 'session'
-	| ':sessionStorage:';
+	| ':memory:';
 
 export type QueryKey = string;
 export type ConnectReason = 'initial' | 'overwrite' | 'delete';
