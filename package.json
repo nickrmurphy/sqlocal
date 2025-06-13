@@ -10,11 +10,6 @@
 			"types": "./dist/index.d.ts",
 			"browser": "./dist/index.js",
 			"import": "./dist/index.js"
-		},
-		"./kysely": {
-			"types": "./dist/kysely/index.d.ts",
-			"browser": "./dist/kysely/index.js",
-			"import": "./dist/kysely/index.js"
 		}
 	},
 	"sideEffects": false,
@@ -43,7 +38,6 @@
 	"devDependencies": {
 		"@vitest/browser": "^3.0.8",
 		"@vitest/ui": "^3.0.8",
-		"kysely": "^0.28.2",
 		"prettier": "^3.5.3",
 		"taze": "^19.0.2",
 		"typescript": "^5.8.2",
@@ -52,14 +46,6 @@
 		"vitest": "^3.0.8",
 		"webdriverio": "^9.12.0",
 		"wrangler": "^3.114.1"
-	},
-	"peerDependencies": {
-		"kysely": "*"
-	},
-	"peerDependenciesMeta": {
-		"kysely": {
-			"optional": true
-		}
 	},
 	"author": "Dallas Hoffman",
 	"license": "MIT",
@@ -71,8 +57,7 @@
 		"database",
 		"wasm",
 		"opfs",
-		"worker",
-		"kysely"
+		"worker"
 	],
 	"repository": {
 		"type": "git",

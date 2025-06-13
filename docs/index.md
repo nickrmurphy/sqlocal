@@ -39,5 +39,5 @@ features:
     details: Just name your database and start running SQL queries
   - title: TypeScript
     icon: 🛠️
-    details: Works with Kysely ORM for making type-safe queries
+    details: Simple API with tagged template literals for SQL queries
 ---

@@ -11,7 +11,7 @@ SQLocal makes it easy to run SQLite3 in the browser, backed by the origin privat
 - 📂 Persists data to the origin private file system, which is optimized for fast file I/O
 - 🔒 Each user can have their own private database instance
 - 🚀 Simple API; just name your database and start running SQL queries
-- 🛠️ Works with Kysely ORM for making type-safe queries
+- 🛠️ Simple tagged template literals for SQL queries
 
 ## Examples
 
@@ -26,7 +26,7 @@ const { sql } = new SQLocal('database.sqlite3');
 // against the SQLite database
 await sql`CREATE TABLE groceries (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)`;
 
-// Execute a parameterized statement just by inserting 
+// Execute a parameterized statement just by inserting
 // parameters in the SQL string
 const items = ['bread', 'milk', 'rice'];
 for (let item of items) {
@@ -49,65 +49,7 @@ Log:
 ]
 ```
 
-Or, you can use SQLocal as a driver for [Kysely](https://kysely.dev/) or [Drizzle ORM](https://orm.drizzle.team/) to make fully-typed queries.
-
-### Kysely
-
-```typescript
-import { SQLocalKysely } from 'sqlocal/kysely';
-import { Kysely, Generated } from 'kysely';
-
-// Initialize SQLocalKysely and pass the dialect to Kysely
-const { dialect } = new SQLocalKysely('database.sqlite3');
-const db = new Kysely<DB>({ dialect });
-
-// Define your schema 
-// (passed to the Kysely generic above)
-type DB = {
-  groceries: {
-    id: Generated<number>;
-    name: string;
-  };
-};
-
-// Make type-safe queries
-const data = await db
-  .selectFrom('groceries')
-  .select('name')
-  .orderBy('name', 'asc')
-  .execute();
-console.log(data);
-```
-
-See the Kysely documentation for [getting started](https://kysely.dev/docs/getting-started?dialect=sqlite).
-
-### Drizzle
-
-```typescript
-import { SQLocalDrizzle } from 'sqlocal/drizzle';
-import { drizzle } from 'drizzle-orm/sqlite-proxy';
-import { sqliteTable, int, text } from 'drizzle-orm/sqlite-core';
-
-// Initialize SQLocalDrizzle and pass the driver to Drizzle
-const { driver } = new SQLocalDrizzle('database.sqlite3');
-const db = drizzle(driver);
-
-// Define your schema
-const groceries = sqliteTable('groceries', {
-  id: int('id').primaryKey({ autoIncrement: true }),
-  name: text('name').notNull(),
-});
-
-// Make type-safe queries
-const data = await db
-  .select({ name: groceries.name })
-  .from(groceries)
-  .orderBy(groceries.name)
-  .all();
-console.log(data);
-```
-
-See the Drizzle ORM documentation for [declaring your schema](https://orm.drizzle.team/docs/sql-schema-declaration) and [making queries](https://orm.drizzle.team/docs/crud).
+Or, you can use SQLocal as a driver for [Drizzle ORM](https://orm.drizzle.team/) to make fully-typed queries.
 
 ## Install
 

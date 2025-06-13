@@ -1,5 +1,4 @@
 import type { Database, Sqlite3Static } from '@sqlite.org/sqlite-wasm';
-import type { CompiledQuery as KyselyQuery } from 'kysely';
 import type { sqlTag } from './lib/sql-tag.js';
 import type { SQLocalProcessor } from './processor.js';
 
@@ -23,17 +22,15 @@ export type Statement = {
 	params: unknown[];
 };
 
-export type ReturningStatement<Result = unknown> =
-	| Statement
-	| KyselyQuery<Result>;
+export type ReturningStatement = Statement;
 
-export type StatementInput<Result = unknown> =
-	| ReturningStatement<Result>
-	| ((sql: typeof sqlTag) => ReturningStatement<Result>);
+export type StatementInput =
+	| ReturningStatement
+	| ((sql: typeof sqlTag) => ReturningStatement);
 
 export type Transaction = {
 	query: <Result extends Record<string, any>>(
-		passStatement: StatementInput<Result>
+		passStatement: StatementInput
 	) => Promise<Result[]>;
 	sql: <Result extends Record<string, any>>(
 		queryTemplate: TemplateStringsArray | string,

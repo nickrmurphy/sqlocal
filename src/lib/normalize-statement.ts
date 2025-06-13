@@ -11,8 +11,6 @@ export function normalizeStatement(statement: StatementInput): Statement {
 
 	if ('params' in statement) {
 		params = statement.params;
-	} else if ('parameters' in statement) {
-		params = statement.parameters as unknown[];
 	}
 
 	return { sql, params };

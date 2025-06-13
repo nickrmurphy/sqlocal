@@ -35,10 +35,6 @@ SQLocal is a browser-based SQLite library that runs SQLite WebAssembly in a web 
 3. **Message Passing**: Client communicates with processor via message passing
 4. **Query Processing**: Processor executes SQL via SQLite WASM and returns results
 
-### ORM Integration
-
-- **Kysely**: `src/kysely/` - SQLocalKysely provides Kysely dialect
-
 ### Key Utilities
 
 - **Mutation Lock** (`src/lib/mutation-lock.ts`): Prevents concurrent database modifications

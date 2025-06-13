@@ -37,30 +37,3 @@ const newProductId = await transaction(async (tx) => {
 });
 ```
 
-## Kysely
-
-Kysely queries can be used with `transaction` by calling Kysely's `compile` method on the queries and passing them to the `tx` object's `query` function. `query` will execute the Kysely query as part of the transaction and its return value will be typed according to Kysely.
-
-Functionally, SQLocal's `transaction` method and [Kysely's `transaction` method](https://kysely.dev/docs/examples/transactions/simple-transaction) are very similar. Both can ensure atomicity and isolation of the transaction, so either method can be used to the same effect as preferred.
-
-```javascript
-const productName = 'rice';
-const productPrice = 2.99;
-
-const newProductId = await transaction(async (tx) => {
-	const [product] = await tx.query(
-		db
-			.insertInto('groceries')
-			.values({ name: productName })
-			.returningAll()
-			.compile()
-	);
-	await tx.query(
-		db
-			.insertInto('prices')
-			.values({ groceryId: product.id, price: productPrice })
-			.compile()
-	);
-	return product.id;
-});
-```

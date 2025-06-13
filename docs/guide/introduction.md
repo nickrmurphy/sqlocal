@@ -2,7 +2,7 @@
 
 SQLocal makes it easy to run SQLite3 in the browser, backed by the origin private file system which provides high-performance read/write access to a SQLite database file stored on the user's device.
 
-SQLocal acts as a lightweight wrapper of the [WebAssembly build of SQLite3](https://sqlite.org/wasm/doc/trunk/index.md) and gives you a simple interface to interact with databases running locally. It can also act as a database driver for [Kysely](/kysely/setup) to make fully-typed queries.
+SQLocal acts as a lightweight wrapper of the [WebAssembly build of SQLite3](https://sqlite.org/wasm/doc/trunk/index.md) and gives you a simple interface to interact with databases running locally using tagged template literals for SQL queries.
 
 Having the ability to store and query relational data on device makes it possible to build powerful, local-first web apps and games no matter the complexity of your data model.
 
@@ -42,33 +42,4 @@ Log:
 ];
 ```
 
-### Kysely
-
-```typescript
-import { SQLocalKysely } from 'sqlocal/kysely';
-import { Kysely, Generated } from 'kysely';
-
-// Initialize SQLocalKysely and pass the dialect to Kysely
-const { dialect } = new SQLocalKysely('database.sqlite3');
-const db = new Kysely<DB>({ dialect });
-
-// Define your schema
-// (passed to the Kysely generic above)
-type DB = {
-	groceries: {
-		id: Generated<number>;
-		name: string;
-	};
-};
-
-// Make type-safe queries
-const data = await db
-	.selectFrom('groceries')
-	.select('name')
-	.orderBy('name', 'asc')
-	.execute();
-console.log(data);
-```
-
-See the Kysely documentation for [getting started](https://kysely.dev/docs/getting-started?dialect=sqlite).
 

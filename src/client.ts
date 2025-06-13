@@ -301,7 +301,7 @@ export class SQLocal {
 		});
 
 		const query = async <Result extends Record<string, any>>(
-			passStatement: StatementInput<Result>
+			passStatement: StatementInput
 		): Promise<Result[]> => {
 			const statement = normalizeStatement(passStatement);
 			const { rows, columns } = await this.exec(
